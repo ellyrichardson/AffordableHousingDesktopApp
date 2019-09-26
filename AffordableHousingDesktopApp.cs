@@ -16,6 +16,8 @@ namespace AffordableHousingDesktopApp
         public AffordableHousingDesktopApp()
         {
             InitializeComponent();
+            prepareDataGrid();
+            prepareStateComboBox();
         }
 
         private void SplitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -39,40 +41,28 @@ namespace AffordableHousingDesktopApp
             createDataGridItems(parseJSONToDataObjects(restAPIHelper.getSearchResults(getSearchFilters())));
         }
 
-        private void createDataGridItems(List<APIDataObject> apiDataObjects)
-        {
+        private void prepareDataGrid() {
             resultsGridView.ColumnCount = 4;
             resultsGridView.Columns[0].Name = "Quality";
             resultsGridView.Columns[1].Name = "City";
             resultsGridView.Columns[2].Name = "State";
             resultsGridView.Columns[3].Name = "County";
+            // try commit
+        }
 
+        private void prepareStateComboBox() {
+            stateComboBox.Items.Add("KS");
+            stateComboBox.Items.Add("MO");
+            stateComboBox.Items.Add("CO");
+        }
+
+        private void createDataGridItems(List<APIDataObject> apiDataObjects)
+        {
             for (int i = 0; i < apiDataObjects.Count; i++) {
                 string[] row = new string[] { apiDataObjects[i].Quality, apiDataObjects[i].City, apiDataObjects[i].State,
                     apiDataObjects[i].County };
                 resultsGridView.Rows.Add(row);
             }
-
-            /*
-            string[] row = new string[] { "89", "Lenexa", "KS", "Johnson County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "94", "Boulder City", "CO", "Leavenworth County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "75", "Lees Summit", "MO", "Jefferson County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "89", "Lenexa", "KS", "Johnson County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "94", "Boulder City", "CO", "Leavenworth County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "75", "Lees Summit", "MO", "Jefferson County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "89", "Lenexa", "KS", "Johnson County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "94", "Boulder City", "CO", "Leavenworth County" };
-            resultsGridView.Rows.Add(row);
-            row = new string[] { "75", "Lees Summit", "MO", "Jefferson County" };
-            resultsGridView.Rows.Add(row);
-            */
         }
 
         List<APIDataObject> parseJSONToDataObjects(string jsonData)
@@ -82,7 +72,7 @@ namespace AffordableHousingDesktopApp
 
             JArray jsonResultsArray = new JArray();
             // Converts the results property of the baseJSONData to an array.
-            jsonResultsArray = JArray.Parse((string)baseJSONData["results"]);
+            jsonResultsArray = baseJSONData["results"] as JArray;
 
             int jsonResultsLength = jsonResultsArray.Count;
 
@@ -93,7 +83,7 @@ namespace AffordableHousingDesktopApp
                 string city = (string)jsonResultsArray[i]["city"];
                 string state = (string)jsonResultsArray[i]["state_code"];
                 string county = (string)jsonResultsArray[i]["county_name"];
-                dataObjects.Add(new APIDataObject(quality, city, state, county));
+                dataObjects.Add(new APIDataObject(city, state, county, quality));
             }
 
             return dataObjects;
@@ -103,11 +93,17 @@ namespace AffordableHousingDesktopApp
         {
             string cityValue = cityTextBox.Text;
             string stateValue = stateComboBox.Text;
+            string countyValue = countyTextBox.Text;
 
             // Only two parameters for because of current API limitations
-            string urlParemeters = "?search=" + cityValue + "," + stateValue;
+            string urlParemeters = "?search=" + cityValue + "," + stateValue + "," + countyValue;
 
             return urlParemeters;
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            resultsGridView.Rows.Clear();
         }
     }
 }
