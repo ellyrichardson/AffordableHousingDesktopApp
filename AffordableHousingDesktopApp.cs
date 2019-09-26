@@ -9,13 +9,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET.MapProviders;
+
 namespace AffordableHousingDesktopApp
 {
     public partial class AffordableHousingDesktopApp : Form
     {
+        private GMapOverlay markers;
+
         public AffordableHousingDesktopApp()
         {
             InitializeComponent();
+            setGmapMarker();
             prepareDataGrid();
             prepareStateComboBox();
         }
@@ -38,7 +46,9 @@ namespace AffordableHousingDesktopApp
         private void SearchButton_Click(object sender, EventArgs e)
         {
             RestAPIConnection restAPIHelper = new RestAPIConnection();
-            createDataGridItems(parseJSONToDataObjects(restAPIHelper.getSearchResults(getSearchFilters())));
+            List<APIDataObject> apiDataObjects = parseJSONToDataObjects(restAPIHelper.getSearchResults(getSearchFilters()));
+            createDataGridItems(apiDataObjects);
+            showResultsInHeatMap(apiDataObjects);
         }
 
         private void prepareDataGrid() {
@@ -47,7 +57,6 @@ namespace AffordableHousingDesktopApp
             resultsGridView.Columns[1].Name = "City";
             resultsGridView.Columns[2].Name = "State";
             resultsGridView.Columns[3].Name = "County";
-            // try commit
         }
 
         private void prepareStateComboBox() {
@@ -83,7 +92,9 @@ namespace AffordableHousingDesktopApp
                 string city = (string)jsonResultsArray[i]["city"];
                 string state = (string)jsonResultsArray[i]["state_code"];
                 string county = (string)jsonResultsArray[i]["county_name"];
-                dataObjects.Add(new APIDataObject(city, state, county, quality));
+                double latitude = (double)jsonResultsArray[i]["latitude"];
+                double longitude = (double)jsonResultsArray[i]["longitude"];
+                dataObjects.Add(new APIDataObject(city, state, county, quality, latitude, longitude));
             }
 
             return dataObjects;
@@ -101,9 +112,38 @@ namespace AffordableHousingDesktopApp
             return urlParemeters;
         }
 
+        private void showResultsInHeatMap(List<APIDataObject> dataObjects) {
+            //GMapOverlay markers = new GMapOverlay("markers");
+
+            for (int i = 0; i < dataObjects.Count; i++) {
+                GMapMarker marker = new GMarkerGoogle(
+                    new PointLatLng(dataObjects[i].Lat, dataObjects[i].Long),
+                    GMarkerGoogleType.blue_dot);
+                markers.Markers.Add(marker);
+            }
+            heatMapGmapControl.Overlays.Add(markers);
+        }
+
+        private void setGmapMarker()
+        {
+            this.markers = new GMapOverlay("markers");
+        }
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             resultsGridView.Rows.Clear();
+            markers.Markers.Clear();
+        }
+
+        private void HeatMapGmapControl_Load(object sender, EventArgs e)
+        {
+            //GMap gmap = new GMap();
+
+            heatMapGmapControl.MapProvider = BingMapProvider.Instance;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+            heatMapGmapControl.SetPositionByKeywords("Paris, France");
+            //heatMapGmapControl.Position = new GMap.NET.PointLatLng(48.8589507, 2.2775175);
+            heatMapGmapControl.ShowCenter = false;
         }
     }
 }

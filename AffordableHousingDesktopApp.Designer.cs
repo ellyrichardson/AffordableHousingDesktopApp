@@ -44,6 +44,7 @@
             this.resultLabel = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.heatMapGmapControl = new GMap.NET.WindowsForms.GMapControl();
             ((System.ComponentModel.ISupportInitialize)(this.resultsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -195,11 +196,39 @@
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
+            // heatMapGmapControl
+            // 
+            this.heatMapGmapControl.Bearing = 0F;
+            this.heatMapGmapControl.CanDragMap = true;
+            this.heatMapGmapControl.EmptyTileColor = System.Drawing.Color.Navy;
+            this.heatMapGmapControl.GrayScaleMode = false;
+            this.heatMapGmapControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.heatMapGmapControl.LevelsKeepInMemmory = 5;
+            this.heatMapGmapControl.Location = new System.Drawing.Point(61, 393);
+            this.heatMapGmapControl.MarkersEnabled = true;
+            this.heatMapGmapControl.MaxZoom = 17;
+            this.heatMapGmapControl.MinZoom = 1;
+            this.heatMapGmapControl.MouseWheelZoomEnabled = true;
+            this.heatMapGmapControl.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.heatMapGmapControl.Name = "heatMapGmapControl";
+            this.heatMapGmapControl.NegativeMode = false;
+            this.heatMapGmapControl.PolygonsEnabled = true;
+            this.heatMapGmapControl.RetryLoadTile = 0;
+            this.heatMapGmapControl.RoutesEnabled = true;
+            this.heatMapGmapControl.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.heatMapGmapControl.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.heatMapGmapControl.ShowTileGridLines = false;
+            this.heatMapGmapControl.Size = new System.Drawing.Size(697, 323);
+            this.heatMapGmapControl.TabIndex = 17;
+            this.heatMapGmapControl.Zoom = 0D;
+            this.heatMapGmapControl.Load += new System.EventHandler(this.HeatMapGmapControl_Load);
+            // 
             // AffordableHousingDesktopApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 394);
+            this.ClientSize = new System.Drawing.Size(827, 757);
+            this.Controls.Add(this.heatMapGmapControl);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.resultLabel);
@@ -242,6 +271,7 @@
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private GMap.NET.WindowsForms.GMapControl heatMapGmapControl;
     }
 }
 
