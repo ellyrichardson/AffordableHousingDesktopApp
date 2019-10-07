@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AffordableHousingDesktopApp));
             this.appTitleLabel = new System.Windows.Forms.Label();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.cityLabel = new System.Windows.Forms.Label();
@@ -43,10 +42,19 @@
             this.filtersLabel = new System.Windows.Forms.Label();
             this.resultLabel = new System.Windows.Forms.Label();
             this.clearButton = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.heatMapGmapControl = new GMap.NET.WindowsForms.GMapControl();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.searchSavedResTextBox = new System.Windows.Forms.TextBox();
+            this.searchSavedResButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resultsGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // appTitleLabel
@@ -54,7 +62,7 @@
             this.appTitleLabel.AutoSize = true;
             this.appTitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.appTitleLabel.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appTitleLabel.Location = new System.Drawing.Point(260, 26);
+            this.appTitleLabel.Location = new System.Drawing.Point(247, 21);
             this.appTitleLabel.Name = "appTitleLabel";
             this.appTitleLabel.Size = new System.Drawing.Size(339, 33);
             this.appTitleLabel.TabIndex = 0;
@@ -63,7 +71,7 @@
             // cityTextBox
             // 
             this.cityTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityTextBox.Location = new System.Drawing.Point(217, 134);
+            this.cityTextBox.Location = new System.Drawing.Point(219, 128);
             this.cityTextBox.Name = "cityTextBox";
             this.cityTextBox.Size = new System.Drawing.Size(153, 30);
             this.cityTextBox.TabIndex = 1;
@@ -73,7 +81,7 @@
             // 
             this.cityLabel.AutoSize = true;
             this.cityLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityLabel.Location = new System.Drawing.Point(57, 142);
+            this.cityLabel.Location = new System.Drawing.Point(59, 136);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(49, 22);
             this.cityLabel.TabIndex = 2;
@@ -83,7 +91,7 @@
             // 
             this.stateLabel.AutoSize = true;
             this.stateLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stateLabel.Location = new System.Drawing.Point(57, 186);
+            this.stateLabel.Location = new System.Drawing.Point(59, 180);
             this.stateLabel.Name = "stateLabel";
             this.stateLabel.Size = new System.Drawing.Size(55, 22);
             this.stateLabel.TabIndex = 4;
@@ -93,7 +101,7 @@
             // 
             this.countyLabel.AutoSize = true;
             this.countyLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countyLabel.Location = new System.Drawing.Point(57, 231);
+            this.countyLabel.Location = new System.Drawing.Point(59, 225);
             this.countyLabel.Name = "countyLabel";
             this.countyLabel.Size = new System.Drawing.Size(71, 22);
             this.countyLabel.TabIndex = 6;
@@ -102,7 +110,7 @@
             // countyTextBox
             // 
             this.countyTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countyTextBox.Location = new System.Drawing.Point(217, 223);
+            this.countyTextBox.Location = new System.Drawing.Point(219, 217);
             this.countyTextBox.Name = "countyTextBox";
             this.countyTextBox.Size = new System.Drawing.Size(153, 30);
             this.countyTextBox.TabIndex = 5;
@@ -111,7 +119,7 @@
             // 
             this.minimumQualityLabel.AutoSize = true;
             this.minimumQualityLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minimumQualityLabel.Location = new System.Drawing.Point(57, 277);
+            this.minimumQualityLabel.Location = new System.Drawing.Point(59, 271);
             this.minimumQualityLabel.Name = "minimumQualityLabel";
             this.minimumQualityLabel.Size = new System.Drawing.Size(154, 22);
             this.minimumQualityLabel.TabIndex = 8;
@@ -120,7 +128,7 @@
             // minimumQualityTextBox
             // 
             this.minimumQualityTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.minimumQualityTextBox.Location = new System.Drawing.Point(217, 269);
+            this.minimumQualityTextBox.Location = new System.Drawing.Point(219, 263);
             this.minimumQualityTextBox.Name = "minimumQualityTextBox";
             this.minimumQualityTextBox.Size = new System.Drawing.Size(153, 30);
             this.minimumQualityTextBox.TabIndex = 7;
@@ -129,7 +137,7 @@
             // 
             this.searchButton.BackColor = System.Drawing.Color.Aqua;
             this.searchButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchButton.Location = new System.Drawing.Point(148, 328);
+            this.searchButton.Location = new System.Drawing.Point(150, 322);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(140, 39);
             this.searchButton.TabIndex = 9;
@@ -141,7 +149,7 @@
             // 
             this.stateComboBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stateComboBox.FormattingEnabled = true;
-            this.stateComboBox.Location = new System.Drawing.Point(217, 178);
+            this.stateComboBox.Location = new System.Drawing.Point(219, 172);
             this.stateComboBox.Name = "stateComboBox";
             this.stateComboBox.Size = new System.Drawing.Size(153, 30);
             this.stateComboBox.TabIndex = 11;
@@ -149,7 +157,7 @@
             // resultsGridView
             // 
             this.resultsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.resultsGridView.Location = new System.Drawing.Point(423, 134);
+            this.resultsGridView.Location = new System.Drawing.Point(425, 128);
             this.resultsGridView.Name = "resultsGridView";
             this.resultsGridView.Size = new System.Drawing.Size(335, 165);
             this.resultsGridView.TabIndex = 12;
@@ -159,7 +167,7 @@
             // 
             this.filtersLabel.AutoSize = true;
             this.filtersLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filtersLabel.Location = new System.Drawing.Point(197, 84);
+            this.filtersLabel.Location = new System.Drawing.Point(199, 78);
             this.filtersLabel.Name = "filtersLabel";
             this.filtersLabel.Size = new System.Drawing.Size(62, 22);
             this.filtersLabel.TabIndex = 13;
@@ -169,7 +177,7 @@
             // 
             this.resultLabel.AutoSize = true;
             this.resultLabel.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultLabel.Location = new System.Drawing.Point(555, 84);
+            this.resultLabel.Location = new System.Drawing.Point(557, 78);
             this.resultLabel.Name = "resultLabel";
             this.resultLabel.Size = new System.Drawing.Size(68, 22);
             this.resultLabel.TabIndex = 14;
@@ -179,22 +187,13 @@
             // 
             this.clearButton.BackColor = System.Drawing.Color.SteelBlue;
             this.clearButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(524, 328);
+            this.clearButton.Location = new System.Drawing.Point(526, 322);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(140, 39);
             this.clearButton.TabIndex = 15;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = false;
             this.clearButton.Click += new System.EventHandler(this.ClearButton_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(768, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(47, 47);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
             // 
             // heatMapGmapControl
             // 
@@ -204,7 +203,7 @@
             this.heatMapGmapControl.GrayScaleMode = false;
             this.heatMapGmapControl.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.heatMapGmapControl.LevelsKeepInMemmory = 5;
-            this.heatMapGmapControl.Location = new System.Drawing.Point(61, 393);
+            this.heatMapGmapControl.Location = new System.Drawing.Point(63, 387);
             this.heatMapGmapControl.MarkersEnabled = true;
             this.heatMapGmapControl.MaxZoom = 17;
             this.heatMapGmapControl.MinZoom = 1;
@@ -223,34 +222,112 @@
             this.heatMapGmapControl.Zoom = 0D;
             this.heatMapGmapControl.Load += new System.EventHandler(this.HeatMapGmapControl_Load);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(-3, -2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(833, 766);
+            this.tabControl1.TabIndex = 18;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.filtersLabel);
+            this.tabPage1.Controls.Add(this.heatMapGmapControl);
+            this.tabPage1.Controls.Add(this.resultsGridView);
+            this.tabPage1.Controls.Add(this.countyTextBox);
+            this.tabPage1.Controls.Add(this.appTitleLabel);
+            this.tabPage1.Controls.Add(this.stateLabel);
+            this.tabPage1.Controls.Add(this.minimumQualityLabel);
+            this.tabPage1.Controls.Add(this.stateComboBox);
+            this.tabPage1.Controls.Add(this.clearButton);
+            this.tabPage1.Controls.Add(this.cityLabel);
+            this.tabPage1.Controls.Add(this.minimumQualityTextBox);
+            this.tabPage1.Controls.Add(this.countyLabel);
+            this.tabPage1.Controls.Add(this.cityTextBox);
+            this.tabPage1.Controls.Add(this.resultLabel);
+            this.tabPage1.Controls.Add(this.searchButton);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(825, 740);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.searchSavedResButton);
+            this.tabPage2.Controls.Add(this.searchSavedResTextBox);
+            this.tabPage2.Controls.Add(this.deleteButton);
+            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(825, 740);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(99, 92);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(634, 238);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.BackColor = System.Drawing.Color.Crimson;
+            this.deleteButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(339, 350);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(140, 39);
+            this.deleteButton.TabIndex = 16;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // searchSavedResTextBox
+            // 
+            this.searchSavedResTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSavedResTextBox.Location = new System.Drawing.Point(292, 45);
+            this.searchSavedResTextBox.Name = "searchSavedResTextBox";
+            this.searchSavedResTextBox.Size = new System.Drawing.Size(153, 30);
+            this.searchSavedResTextBox.TabIndex = 17;
+            // 
+            // searchSavedResButton
+            // 
+            this.searchSavedResButton.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.searchSavedResButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSavedResButton.Location = new System.Drawing.Point(470, 40);
+            this.searchSavedResButton.Name = "searchSavedResButton";
+            this.searchSavedResButton.Size = new System.Drawing.Size(80, 39);
+            this.searchSavedResButton.TabIndex = 18;
+            this.searchSavedResButton.Text = "Search";
+            this.searchSavedResButton.UseVisualStyleBackColor = false;
+            this.searchSavedResButton.Click += new System.EventHandler(this.SearchSavedResButton_Click);
+            // 
             // AffordableHousingDesktopApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 757);
-            this.Controls.Add(this.heatMapGmapControl);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.clearButton);
-            this.Controls.Add(this.resultLabel);
-            this.Controls.Add(this.filtersLabel);
-            this.Controls.Add(this.resultsGridView);
-            this.Controls.Add(this.stateComboBox);
-            this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.minimumQualityLabel);
-            this.Controls.Add(this.minimumQualityTextBox);
-            this.Controls.Add(this.countyLabel);
-            this.Controls.Add(this.countyTextBox);
-            this.Controls.Add(this.stateLabel);
-            this.Controls.Add(this.cityLabel);
-            this.Controls.Add(this.cityTextBox);
-            this.Controls.Add(this.appTitleLabel);
+            this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AffordableHousingDesktopApp";
             this.Text = "Affordable Housing Desktop";
             ((System.ComponentModel.ISupportInitialize)(this.resultsGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -270,8 +347,14 @@
         private System.Windows.Forms.Label filtersLabel;
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.Button clearButton;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private GMap.NET.WindowsForms.GMapControl heatMapGmapControl;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button searchSavedResButton;
+        private System.Windows.Forms.TextBox searchSavedResTextBox;
+        private System.Windows.Forms.Button deleteButton;
     }
 }
 

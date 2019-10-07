@@ -145,5 +145,15 @@ namespace AffordableHousingDesktopApp
             //heatMapGmapControl.Position = new GMap.NET.PointLatLng(48.8589507, 2.2775175);
             heatMapGmapControl.ShowCenter = false;
         }
+
+        private void SearchSavedResButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
