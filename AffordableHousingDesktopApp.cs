@@ -19,12 +19,14 @@ namespace AffordableHousingDesktopApp
     public partial class AffordableHousingDesktopApp : Form
     {
         private GMapOverlay markers;
+        
 
         public AffordableHousingDesktopApp()
         {
             InitializeComponent();
             setGmapMarker();
-            prepareDataGrid();
+            prepareResultsDataGrid();
+            prepareSavedResultsDataGrid();
             prepareStateComboBox();
         }
 
@@ -51,12 +53,20 @@ namespace AffordableHousingDesktopApp
             showResultsInHeatMap(apiDataObjects);
         }
 
-        private void prepareDataGrid() {
+        private void prepareResultsDataGrid() {
             resultsGridView.ColumnCount = 4;
             resultsGridView.Columns[0].Name = "Quality";
             resultsGridView.Columns[1].Name = "City";
             resultsGridView.Columns[2].Name = "State";
             resultsGridView.Columns[3].Name = "County";
+        }
+
+        private void prepareSavedResultsDataGrid() {
+            savedResultsGridView.ColumnCount = 4;
+            savedResultsGridView.Columns[0].Name = "Quality";
+            savedResultsGridView.Columns[1].Name = "City";
+            savedResultsGridView.Columns[2].Name = "State";
+            savedResultsGridView.Columns[3].Name = "County";
         }
 
         private void prepareStateComboBox() {
@@ -146,12 +156,56 @@ namespace AffordableHousingDesktopApp
             heatMapGmapControl.ShowCenter = false;
         }
 
+        // Gets selected results from resultsGridView.
+        private DataRow[] getSelectedResults(DataGridView grid)
+        {
+            int selectedRowCount = grid.SelectedRows.Count;
+            DataRow[] selectedResultRows = new DataRow[selectedRowCount];
+            for (int i = 1; i < selectedRowCount; i++) {
+                selectedResultRows[i] = ((DataRowView)grid.SelectedRows[i].DataBoundItem).Row;
+            }
+
+            return selectedResultRows;
+        }
+
+        // Add rows to a selected grid view.
+        private void copyRows(DataGridView dest, DataRow[] rowsToCopy) {
+            
+            for (int i = 0; i < rowsToCopy.Length; i++) {
+                dest.Rows.Add(rowsToCopy[i].ItemArray);
+            }
+            
+            /*
+            foreach (DataRow row in rowsToCopy)
+            {
+                // add to dest
+                dest.Rows.Add(row.ItemArray);
+            }
+            */
+        }
+
         private void SearchSavedResButton_Click(object sender, EventArgs e)
         {
 
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            /*
+            for (int i = 0; i < resultsGridView.SelectedRows.Count; i++) {
+                savedResultsGridView.Rows.Add(resultsGridView.SelectedRows[i]);
+            }
+            */
+            // Copies rows from resultsGridView to savedResultsGridView.
+            copyRows(savedResultsGridView, getSelectedResults(resultsGridView));
+        }
+
+        private void SavedResultsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

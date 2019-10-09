@@ -46,15 +46,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.searchSavedResTextBox = new System.Windows.Forms.TextBox();
             this.searchSavedResButton = new System.Windows.Forms.Button();
+            this.searchSavedResTextBox = new System.Windows.Forms.TextBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.savedResultsGridView = new System.Windows.Forms.DataGridView();
+            this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.resultsGridView)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.savedResultsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // appTitleLabel
@@ -187,7 +188,7 @@
             // 
             this.clearButton.BackColor = System.Drawing.Color.SteelBlue;
             this.clearButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(526, 322);
+            this.clearButton.Location = new System.Drawing.Point(607, 322);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(140, 39);
             this.clearButton.TabIndex = 15;
@@ -234,6 +235,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.saveButton);
             this.tabPage1.Controls.Add(this.filtersLabel);
             this.tabPage1.Controls.Add(this.heatMapGmapControl);
             this.tabPage1.Controls.Add(this.resultsGridView);
@@ -262,7 +264,7 @@
             this.tabPage2.Controls.Add(this.searchSavedResButton);
             this.tabPage2.Controls.Add(this.searchSavedResTextBox);
             this.tabPage2.Controls.Add(this.deleteButton);
-            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Controls.Add(this.savedResultsGridView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -271,13 +273,25 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // searchSavedResButton
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(99, 92);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(634, 238);
-            this.dataGridView1.TabIndex = 0;
+            this.searchSavedResButton.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.searchSavedResButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSavedResButton.Location = new System.Drawing.Point(470, 40);
+            this.searchSavedResButton.Name = "searchSavedResButton";
+            this.searchSavedResButton.Size = new System.Drawing.Size(80, 39);
+            this.searchSavedResButton.TabIndex = 18;
+            this.searchSavedResButton.Text = "Search";
+            this.searchSavedResButton.UseVisualStyleBackColor = false;
+            this.searchSavedResButton.Click += new System.EventHandler(this.SearchSavedResButton_Click);
+            // 
+            // searchSavedResTextBox
+            // 
+            this.searchSavedResTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchSavedResTextBox.Location = new System.Drawing.Point(292, 45);
+            this.searchSavedResTextBox.Name = "searchSavedResTextBox";
+            this.searchSavedResTextBox.Size = new System.Drawing.Size(153, 30);
+            this.searchSavedResTextBox.TabIndex = 17;
             // 
             // deleteButton
             // 
@@ -291,25 +305,26 @@
             this.deleteButton.UseVisualStyleBackColor = false;
             this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
-            // searchSavedResTextBox
+            // savedResultsGridView
             // 
-            this.searchSavedResTextBox.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchSavedResTextBox.Location = new System.Drawing.Point(292, 45);
-            this.searchSavedResTextBox.Name = "searchSavedResTextBox";
-            this.searchSavedResTextBox.Size = new System.Drawing.Size(153, 30);
-            this.searchSavedResTextBox.TabIndex = 17;
+            this.savedResultsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.savedResultsGridView.Location = new System.Drawing.Point(99, 92);
+            this.savedResultsGridView.Name = "savedResultsGridView";
+            this.savedResultsGridView.Size = new System.Drawing.Size(634, 238);
+            this.savedResultsGridView.TabIndex = 0;
+            this.savedResultsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SavedResultsGridView_CellContentClick);
             // 
-            // searchSavedResButton
+            // saveButton
             // 
-            this.searchSavedResButton.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.searchSavedResButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchSavedResButton.Location = new System.Drawing.Point(470, 40);
-            this.searchSavedResButton.Name = "searchSavedResButton";
-            this.searchSavedResButton.Size = new System.Drawing.Size(80, 39);
-            this.searchSavedResButton.TabIndex = 18;
-            this.searchSavedResButton.Text = "Search";
-            this.searchSavedResButton.UseVisualStyleBackColor = false;
-            this.searchSavedResButton.Click += new System.EventHandler(this.SearchSavedResButton_Click);
+            this.saveButton.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.saveButton.Font = new System.Drawing.Font("Times New Roman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveButton.Location = new System.Drawing.Point(436, 322);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(140, 39);
+            this.saveButton.TabIndex = 18;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // AffordableHousingDesktopApp
             // 
@@ -326,7 +341,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.savedResultsGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -351,10 +366,11 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView savedResultsGridView;
         private System.Windows.Forms.Button searchSavedResButton;
         private System.Windows.Forms.TextBox searchSavedResTextBox;
         private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 
