@@ -197,23 +197,14 @@ namespace AffordableHousingDesktopApp
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            /*
-            for (int i = 0; i < resultsGridView.SelectedRows.Count; i++) {
-                savedResultsGridView.Rows.Add(resultsGridView.SelectedRows[i]);
-            }
-            */
             // Copies rows from resultsGridView to savedResultsGridView.
-            //copyRows(savedResultsGridView, getSelectedResults(resultsGridView));
             int selectedIndexesCount = resultsGridView.SelectedRows.Count;
-            int[] selectedIndexes = new int[selectedIndexesCount];
-            //int selectedIndex = resultsGridView.SelectedRows[0].Index;
             for (int i = 0; i < selectedIndexesCount; i++) {
-                int selectedIndex = resultsGridView.SelectedRows[i].Index;
+                savedResultsGridView.Rows.Add(resultsGridView.SelectedRows);
                 for (int j = 0; j < resultsGridView.Columns.Count; j++)
                 {
-                    savedResultsGridView.Rows[i].Cells[j].Value = resultsGridView.Rows[selectedIndex].Cells[j].Value;
+                    savedResultsGridView.Rows[i].Cells[j].Value = resultsGridView.Rows[i].Cells[j].Value;
                 }
-                //savedResultsGridView.Rows[0].Cells[i].Value = resultsGridView.Rows[selectedIndex].Cells[i].Value;
             }
         }
 
