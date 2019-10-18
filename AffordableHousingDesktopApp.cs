@@ -175,14 +175,6 @@ namespace AffordableHousingDesktopApp
             for (int i = 0; i < rowsToCopy.Length; i++) {
                 dest.Rows.Add(rowsToCopy[i].ItemArray);
             }
-            
-            /*
-            foreach (DataRow row in rowsToCopy)
-            {
-                // add to dest
-                dest.Rows.Add(row.ItemArray);
-            }
-            */
         }
 
         private void SearchSavedResButton_Click(object sender, EventArgs e)
